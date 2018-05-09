@@ -4,7 +4,6 @@ import App2 from './App2';
 import AppTest from './AppTest';
 import './App.css';
 
-
 const BodyText = (props)=>{
   return(
     <div>
@@ -13,14 +12,16 @@ const BodyText = (props)=>{
   )
 }
 
+
 class App extends Component {
   //컨스트럭터 정의(프롭스 받아옴)
   constructor(props){
     super(props); //부모의 프롭스 받아서 정의
-    this.state = {
+    this.state = { //초기값 설정. 렌더링 후에 this.state 사용금지!
       hello: "hello worlds!",
       hell: "헬조선!",
-      value: "" //벨류 초기화
+      value: "", //벨류 초기화
+      number: "6974",
     };
     //기동확인 콘솔
     console.log(props.state);
@@ -93,25 +94,77 @@ class App extends Component {
 
         <BodyText>
           <h2>{ hello }</h2>
+          hello 라는 키를 가진 스테이트를 불러옴.
+          <br/>
+          이렇게 엔터하려면 br태그로 띄어야함<br/>
         </BodyText>
         <button type="button" onClick={this.clickFn} >또다른 버튼</button>
 
         
-        <AppTest>
+        <AppTest name="테스트앱" >
+        테스트앱이라는 이름을 가지게 정의하고<br/>
+        실행함. 다른 js문서라도 결국 가져와 붙이는것.<br/>
+        차이점은 없음.
         </AppTest>
 
+        <AppTest name={this.props.name}>
+        this.props.name 을 name으로 지정했을 경우.<br/>
+        index에 지정된 정보로 출력됨.<br/>
+        이런 텍스트 전부가 자식인가?
+        </AppTest>
 
+        <div>
+         <h1>Hello {this.props.name}</h1>
 
+         <h2>{this.props.number}</h2>
 
-
+         <h3>{this.props.children}</h3>
+         
+        </div>
+        
       </div>
-
     );
   }
-}
+};
+// App의 벨류 초기화
+// 하지만 App클래스 내부에서 부모의 프롭스를 받아 스테이트화, 초기화를 하기때문에 의미 없음.
+// App.defaultProps = {
+//   value:100
+// };
+// App.propTypes = {
+//   name: propTypes.sting,
+//   number:propTypes.number,
+// };
 
 
+class Counter extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      value:0,
+    };
 
+    this.handleClick = this.handleClick.bind(this);
+    
+  }
 
-export default hot(module)(App);
+  handleClick(){
+    this.setState({
+      value:this.state.value +1,
+
+    })
+  }
+//handleClick()을 사용할 경우 최대로 실행되 에러.
+    render(){
+    return(
+      <div>
+      <h2>{this.state.value}</h2>
+      <button onClick={this.handleClick}>눌러욧!</button>
+      </div>
+    )
+  }
+};
+
+// export default hot(module)(App);
+export default hot(module)(Counter);
 
