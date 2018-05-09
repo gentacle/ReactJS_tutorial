@@ -125,17 +125,17 @@ class App extends Component {
       </div>
     );
   }
-};
-// App의 벨류 초기화
-// 하지만 App클래스 내부에서 부모의 프롭스를 받아 스테이트화, 초기화를 하기때문에 의미 없음.
-// App.defaultProps = {
-//   value:100
-// };
-// App.propTypes = {
-//   name: propTypes.sting,
-//   number:propTypes.number,
-// };
+  // App의 벨류 초기화
+  // 하지만 App클래스 내부에서 부모의 프롭스를 받아 스테이트화, 초기화를 하기때문에 의미 없음.
+  // App.defaultProps = {
+  //   value:100
+  // };
+  // App.propTypes = {
+  //   name: propTypes.sting,
+  //   number:propTypes.number,
+  // };
 
+};
 
 // Counter 클래스
 class Counter extends Component {
@@ -161,8 +161,8 @@ class Counter extends Component {
     })
   }
 
-//handleClick()을 실행. setstate 실행, 변경. 다시 렌더 반복
-//최대로 실행되 에러
+  //handleClick()을 실행. setstate 실행, 변경. 다시 렌더 반복
+  //최대로 실행되 에러
     render(){
     return(
       <div>
@@ -173,6 +173,40 @@ class Counter extends Component {
   }
 };
 
+// Contact 클래스
+class Contact extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      contactData:[
+        {name:'groy', phone:'000-0000-0000'},
+        {name:'roze', phone:'000-0000-0001'},
+        {name:'clow', phone:'000-0000-0002'},
+        {name:'gent', phone:'000-0000-0003'},
+        {name:'lyin', phone:'000-0000-0004'},
+        {name:'laur', phone:'000-0000-0005'}
+
+      ]
+    };
+  }
+
+  render(){
+    const mapToComponent = (data) => {
+      return data.map((contact,i) => {
+        return(<Contact contact={contact} key={i}/>);
+      });
+    };
+    return(
+      <div>
+        { mapToComponent(this.state.contactData) }
+      </div>
+
+    );
+  }
+
+}
+
 // export default hot(module)(App);
-export default hot(module)(Counter);
+// export default hot(module)(Counter);
+export default hot(module)(Contact);
 
