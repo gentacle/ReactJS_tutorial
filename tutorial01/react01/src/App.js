@@ -12,7 +12,7 @@ const BodyText = (props)=>{
   )
 }
 
-
+// App 클래스
 class App extends Component {
   //컨스트럭터 정의(프롭스 받아옴)
   constructor(props){
@@ -137,6 +137,7 @@ class App extends Component {
 // };
 
 
+// Counter 클래스
 class Counter extends Component {
   constructor(props){
     super(props);
@@ -149,12 +150,19 @@ class Counter extends Component {
   }
 
   handleClick(){
+
+    //이렇게 사용하지 말것.
+    // this.state.value = this.state.value +1;
+    // this.forceUpdate();
+
     this.setState({
       value:this.state.value +1,
 
     })
   }
-//handleClick()을 사용할 경우 최대로 실행되 에러.
+
+//handleClick()을 실행. setstate 실행, 변경. 다시 렌더 반복
+//최대로 실행되 에러
     render(){
     return(
       <div>
