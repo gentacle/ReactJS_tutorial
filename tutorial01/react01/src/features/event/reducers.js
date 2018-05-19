@@ -1,7 +1,6 @@
 /** 액션 타입에 따라 리듀서 처리를 위해 리덕스 액션을 사용하여 바인딩 */
 import { handleActions } from "redux-actions";
 import axios from "axios";
-//액션타입 불러오기
 
 
 //1.타입생성단
@@ -60,6 +59,9 @@ async function getTitle (id){
 /* <Reducer FnList>------------------------------------------------ */
 
 // 액션타입에 따라 데이터 반영
+//기본인자로 state,action을 받음.
+//모든 Fn을 swich 구문으로 받아 처리하는게 기본이나 비효율적이라 사전형으로 전부 정리해
+//그에 맞는 type을 받아 처리하는 방식으로 구현.
 export default handleActions(
   {
     [types.GET_TITIL_POST_PENDING] : (state, actions) =>{

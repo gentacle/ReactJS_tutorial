@@ -17,3 +17,5 @@ const configureStore = (initialState) => {
   return store;
 }
 export default configureStore; 
+
+//데이터처리단계인 대기,성공,실패를 커스텀 하기위해 썽크를 사용한다.
