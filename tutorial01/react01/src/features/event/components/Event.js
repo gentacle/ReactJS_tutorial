@@ -22,5 +22,6 @@ const mapStateToProps = (state) => {
       loading: state.event.pending
     }
   }
-  
-export default connect(mapStateToProps, null )(Event);
+
+Event = connect(mapStateToProps, null )(Event);
+export default Event;

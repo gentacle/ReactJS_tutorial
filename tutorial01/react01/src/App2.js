@@ -1,14 +1,38 @@
-import React from 'react'
-import { hot } from 'react-hot-loader'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { hot } from 'react-hot-loader';
 
-const App2 = (props)=>{
-    return(
-      <div>
-        <span>{props.propsName}</span>
-        <button type="button" onClick={props.changeString}>누르면 변할까?</button>
+import Event from './features/event/components/Event';
+import { actions as eventActions } from './features/event/reducers';
+
+import './App.css';
+
+// App 클래스
+class App extends Component {
+  constructor(props){
+    super(props)
+    this.clickFn = this.clickFn.bind(this);
+  }
+  clickFn(){
+    this.props.setTitleString(s,n,v)
+  }
+  render() {
+    return (
+      <div className="App">
+        <Event />
+        <button onClick={this.clickFn}>set Title</button>
       </div>
-    )
-}
-//propsName 은 여기서 설정한 프롭스 이름이며 다른곳에서 받아 사용.
+    );
+  }
+};
 
-export default hot(module)(App2);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setTitleString: (...data) => dispatch(eventActions.setTitleString(...data))
+  }
+}
+
+App = connect(null, mapDispatchToProps )(App);
+
+export default hot(module)(App);
+
