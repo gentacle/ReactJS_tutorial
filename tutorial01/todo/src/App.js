@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import { connect } from 'react-redux'
+import { connect } from 'react-redux'
 
 import Header from './features/event/components/header';
 import TodoInput from './features/event/components/todoInput';
@@ -45,7 +45,7 @@ class App extends Component{
       }
     );
   }
-  
+
   render(){
     return (
       <div className="App">
@@ -65,4 +65,4 @@ class App extends Component{
   }
 }
 
-export default hot(module)(App)
+export default hot(module)(App);
