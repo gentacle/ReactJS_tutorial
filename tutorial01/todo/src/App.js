@@ -5,7 +5,7 @@ import Header from './features/event/components/header';
 import TodoInput from './features/event/components/todoInput';
 import TodoItem from './features/event/components/todoItem';
 
-import { hot } from 'react-hot-loader'
+import { hot } from 'react-hot-loader';
 import logo from './logo.svg';
 import './App.css';
 
@@ -45,24 +45,24 @@ class App extends Component{
       }
     );
   }
-}
-
-render() {
-  return (
-    <div className="App">
-      <div className="todo-wrapper">
-        <Header />
-        <TodoInput todoText="" addTodo={this.addTodo} />
-        <ul>
-          {
-            this.state.todos.map((todo) => {
-              return <TodoItem todo={todo} key={todo.id} id={todo.id} removeTodo={this.removeTodo}/>
-            })
-          }
-        </ul>
+  
+  render(){
+    return (
+      <div className="App">
+        <div className="todo-wrapper">
+          <Header />
+          <TodoInput todoText="" addTodo={this.addTodo} />
+          <ul>
+            {
+              this.state.todos.map((todo) => {
+                return <TodoItem todo={todo} key={todo.id} id={todo.id} removeTodo={this.removeTodo}/>
+              })
+            }
+          </ul>
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
 
 export default hot(module)(App)
